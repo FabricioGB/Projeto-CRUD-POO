@@ -1,4 +1,3 @@
-
 package univs.edu.usuario;
 
 import org.hibernate.Session;
@@ -7,34 +6,41 @@ import org.hibernate.criterion.Restrictions;
 import univs.edu.util.HibernateUtil;
 
 public class UsuarioDAO {
+
     private Session sessao;
-    private Transaction transacao;
-    
-    public void salvar(Usuario usuario){
+    private Transaction trasacao;
+
+    public void salvar(Usuario usuario) {
         sessao = HibernateUtil.getSessionFactory().openSession();
-        transacao = sessao.beginTransaction();
+
+        trasacao = sessao.beginTransaction();
         sessao.save(usuario);
-        transacao.commit();
-        sessao.close();
+        trasacao.commit();
+        sessao.clear();
     }
-    public void excluir(Usuario usuario){
+
+    public void excluir(Usuario usuario) {
         sessao = HibernateUtil.getSessionFactory().openSession();
-        transacao = sessao.beginTransaction();
+
+        trasacao = sessao.beginTransaction();
         sessao.delete(usuario);
-        transacao.commit();
-        sessao.close();
+        trasacao.commit();
+        sessao.clear();
     }
-   public void editar(Usuario usuario){
+
+    public void editar(Usuario usuario) {
         sessao = HibernateUtil.getSessionFactory().openSession();
-        transacao = sessao.beginTransaction();
+
+        trasacao = sessao.beginTransaction();
         sessao.update(usuario);
-        transacao.commit();
-        sessao.close();
+        trasacao.commit();
+        sessao.clear();
     }
-   public Usuario pesquisar(int id ){
+    
+        public Usuario pesquisar(int id) {
         sessao = HibernateUtil.getSessionFactory().openSession();
-        transacao = sessao.beginTransaction();
-        Usuario usuario = (Usuario) sessao.createCriteria(Usuario.class).add(Restrictions.eq("id", id)).uniqueResult();
+        trasacao = sessao.beginTransaction();
+        Usuario usuario = (Usuario) sessao.createCriteria(Usuario.class).add(Restrictions.eq("idUsuario", id)).uniqueResult();
         sessao.close();
         return usuario;
     }
