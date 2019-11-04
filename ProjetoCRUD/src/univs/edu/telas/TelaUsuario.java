@@ -15,6 +15,10 @@ public class TelaUsuario extends javax.swing.JFrame {
      usuario = new Usuario();
      dao = new UsuarioDAO();
     }
+        public void preencherUsuario(){
+            tfLogin.setText(usuario.getLogin());
+            tfSenha.setText(usuario.getSenha());
+        }
 
     
     @SuppressWarnings("unchecked")
@@ -29,6 +33,7 @@ public class TelaUsuario extends javax.swing.JFrame {
         tfSenha = new javax.swing.JPasswordField();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
+        jButton3 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -71,34 +76,45 @@ public class TelaUsuario extends javax.swing.JFrame {
             }
         });
 
+        jButton3.setText("Limpar");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addContainerGap(60, Short.MAX_VALUE)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(18, 18, 18)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 209, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(24, 24, 24))
-                .addGroup(layout.createSequentialGroup()
-                    .addGap(58, 58, 58)
-                    .addComponent(jLabel3)
-                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addGroup(layout.createSequentialGroup()
-                            .addComponent(jButton1)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jButton2))
-                        .addComponent(tfSenha, javax.swing.GroupLayout.PREFERRED_SIZE, 177, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGap(0, 0, Short.MAX_VALUE)))
             .addGroup(layout.createSequentialGroup()
-                .addGap(62, 62, 62)
-                .addComponent(jLabel4)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(tfLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(36, 36, 36))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 209, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(24, 24, 24))
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(24, 24, 24)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel3)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(tfSenha, javax.swing.GroupLayout.PREFERRED_SIZE, 177, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(4, 4, 4)
+                                .addComponent(jLabel4)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(tfLogin))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jButton3)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jButton2)
+                        .addGap(50, 50, 50)
+                        .addComponent(jButton1)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -118,7 +134,8 @@ public class TelaUsuario extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 38, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton1)
-                    .addComponent(jButton2))
+                    .addComponent(jButton2)
+                    .addComponent(jButton3))
                 .addGap(37, 37, 37))
         );
 
@@ -151,6 +168,10 @@ public class TelaUsuario extends javax.swing.JFrame {
         tela.setVisible(true);
         dispose();
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        limparCampos();
+    }//GEN-LAST:event_jButton3ActionPerformed
     public void limparCampos(){
         usuario = new Usuario();
         tfLogin.setText("");
@@ -170,6 +191,7 @@ public class TelaUsuario extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
