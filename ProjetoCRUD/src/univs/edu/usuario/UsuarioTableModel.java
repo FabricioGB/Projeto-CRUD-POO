@@ -37,6 +37,7 @@ public class UsuarioTableModel extends AbstractTableModel {
         return null;
     }
 
+    @Override
     public String getColumnName(int index) {
         switch (index) {
             case 0:
@@ -45,6 +46,7 @@ public class UsuarioTableModel extends AbstractTableModel {
                 return colunas[1];
             case 2:
                 return colunas[2];
+
         }
         return null;
     }
