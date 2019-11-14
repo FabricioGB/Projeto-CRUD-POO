@@ -1,6 +1,7 @@
 package univs.edu.funcionario;
 
 import java.util.List;
+import javax.swing.JOptionPane;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.criterion.Restrictions;
@@ -17,8 +18,10 @@ public class FuncionarioDAO {
         transacao = sessao.beginTransaction();
         if(funcionario.getIdFuncionario() == 0){
             sessao.save(funcionario);
+            JOptionPane.showMessageDialog(null,"Funcionario Cadastrado!");
         }else{
             editar(funcionario);
+            JOptionPane.showMessageDialog(null,"Funcionario Editado,0!");
         }
         transacao.commit();
         sessao.close();
