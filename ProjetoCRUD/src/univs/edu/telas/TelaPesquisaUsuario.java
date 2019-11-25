@@ -1,5 +1,6 @@
 package univs.edu.telas;
 
+import java.util.List;
 import javax.swing.JOptionPane;
 import univs.edu.usuario.Usuario;
 import univs.edu.usuario.UsuarioDAO;
@@ -13,12 +14,12 @@ public class TelaPesquisaUsuario extends javax.swing.JFrame {
     
     public TelaPesquisaUsuario() {
         initComponents();
-        atualizarTabela();
+        atualizarTabela(dao.listarUsuarios());
     }
     
-    public void atualizarTabela(){
+    public void atualizarTabela(List<Usuario> usuarios){
         UsuarioTableModel tm = 
-                new UsuarioTableModel(dao.listarUsuarios());
+                new UsuarioTableModel(usuarios);
         tabelaUsuario.setModel(tm);
     }
 
@@ -43,6 +44,12 @@ public class TelaPesquisaUsuario extends javax.swing.JFrame {
 
         jLabel3.setFont(new java.awt.Font("Lucida Grande", 1, 14)); // NOI18N
         jLabel3.setText("Login");
+
+        tfLogin.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                tfLoginKeyPressed(evt);
+            }
+        });
 
         jButton1.setText("Pesquisar");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -139,7 +146,7 @@ public class TelaPesquisaUsuario extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
+       atualizarTabela(dao.pesquisar("login", tfLogin.getText()));
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
@@ -151,7 +158,7 @@ public class TelaPesquisaUsuario extends javax.swing.JFrame {
                 JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION){
             usuario = dao.pesquisar((int) tabelaUsuario.getValueAt(linha, 0));
             dao.excluir(usuario);
-            atualizarTabela();
+            atualizarTabela(dao.listarUsuarios());
             JOptionPane.showMessageDialog(null, "Usuário excluído!");
         }
         
@@ -178,6 +185,10 @@ public class TelaPesquisaUsuario extends javax.swing.JFrame {
         telaUsuario.setVisible(true);
         dispose();
     }//GEN-LAST:event_jButton4ActionPerformed
+
+    private void tfLoginKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tfLoginKeyPressed
+        atualizarTabela(dao.pesquisar("login", tfLogin.getText()));
+    }//GEN-LAST:event_tfLoginKeyPressed
 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
